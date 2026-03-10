@@ -7,25 +7,21 @@ color:white;
 overflow-x:hidden;
 }
 
-/* fondo animado */
+/* fondo */
 
 .fondo{
 position:fixed;
 width:100%;
 height:100%;
-background:black;
 z-index:-1;
 }
-
-/* estrellas */
 
 .fondo::before{
 content:"";
 position:absolute;
 width:100%;
 height:100%;
-background-image:
-radial-gradient(white 1px, transparent 1px);
+background-image:radial-gradient(white 1px, transparent 1px);
 background-size:50px 50px;
 opacity:0.3;
 animation:stars 40s linear infinite;
@@ -36,16 +32,14 @@ from{transform:translateY(0)}
 to{transform:translateY(-1000px)}
 }
 
-/* corazones */
-
 .fondo::after{
-content:"❤️ ❤️ ❤️ ❤️ ❤️";
+content:"❤️ ❤️ ❤️ ❤️ ❤️ ❤️";
 position:absolute;
 width:100%;
 height:100%;
-font-size:30px;
 opacity:0.1;
-animation:hearts 20s linear infinite;
+font-size:30px;
+animation:hearts 25s linear infinite;
 }
 
 @keyframes hearts{
@@ -53,13 +47,27 @@ from{transform:translateY(100vh)}
 to{transform:translateY(-100vh)}
 }
 
+/* mensaje entrada */
+
+#mensajeEntrada{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+background:#ff4d88;
+padding:15px 25px;
+border-radius:20px;
+font-size:18px;
+opacity:0;
+transition:1s;
+z-index:1000;
+}
 
 /* secciones */
 
 section{
 padding:60px 20px;
 }
-
 
 /* contador */
 
@@ -68,8 +76,7 @@ font-size:28px;
 color:#ff4d88;
 }
 
-
-/* galeria tipo instagram */
+/* galeria */
 
 .galeria{
 display:grid;
@@ -85,8 +92,7 @@ aspect-ratio:1/1;
 object-fit:cover;
 }
 
-
-/* responsive celular */
+/* responsive */
 
 @media (max-width:600px){
 
@@ -95,7 +101,6 @@ grid-template-columns:repeat(2,1fr);
 }
 
 }
-
 
 /* sobre */
 
@@ -138,6 +143,41 @@ transform:rotateX(180deg);
 transform:translateY(-20px);
 }
 
+/* timeline */
+
+.timeline{
+max-width:600px;
+margin:auto;
+text-align:left;
+border-left:3px solid #ff4d88;
+padding-left:20px;
+}
+
+.evento{
+margin-bottom:30px;
+position:relative;
+}
+
+.evento::before{
+content:"";
+width:15px;
+height:15px;
+background:#ff4d88;
+border-radius:50%;
+position:absolute;
+left:-29px;
+top:5px;
+}
+
+.evento h3{
+margin:0;
+color:#ff4d88;
+}
+
+.evento span{
+font-size:14px;
+opacity:0.7;
+}
 
 /* sorpresa */
 
@@ -154,8 +194,7 @@ font-size:24px;
 color:#ff4d88;
 }
 
-
-/* animaciones scroll */
+/* animacion scroll */
 
 .reveal{
 opacity:0;
