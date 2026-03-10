@@ -7,52 +7,74 @@ function actualizarContador(){
 const ahora = new Date();
 const diferencia = ahora - fechaInicio;
 
-const dias = Math.floor(diferencia / (1000*60*60*24));
-const horas = Math.floor((diferencia/(1000*60*60)) % 24);
-const minutos = Math.floor((diferencia/(1000*60)) % 60);
+const dias = Math.floor(diferencia/(1000*60*60*24));
+const horas = Math.floor((diferencia/(1000*60*60))%24);
+const minutos = Math.floor((diferencia/(1000*60))%60);
 
 document.getElementById("contador").innerHTML =
-dias + " días " + horas + " horas " + minutos + " minutos 💕";
+dias+" días "+horas+" horas "+minutos+" minutos ❤️";
 
 }
 
 setInterval(actualizarContador,1000);
 
 
-/* corazones flotando */
+/* abrir carta */
 
-function crearCorazon(){
+const sobre=document.getElementById("sobre");
 
-const corazon = document.createElement("div");
-corazon.classList.add("corazon");
-corazon.innerHTML="❤️";
+sobre.addEventListener("click",()=>{
+sobre.classList.toggle("abierto");
+});
 
-corazon.style.left=Math.random()*100+"vw";
-corazon.style.fontSize=(Math.random()*20+10)+"px";
 
-document.querySelector(".corazones").appendChild(corazon);
+/* musica */
 
-setTimeout(()=>{
-corazon.remove();
-},6000);
+const btnPlay=document.getElementById("playBtn");
+const musica=document.getElementById("musica");
+
+let reproduciendo=false;
+
+btnPlay.addEventListener("click",()=>{
+
+if(!reproduciendo){
+
+musica.play();
+btnPlay.innerText="⏸️ Pausar música";
+reproduciendo=true;
+
+}else{
+
+musica.pause();
+btnPlay.innerText="▶️ Reproducir música";
+reproduciendo=false;
 
 }
 
-setInterval(crearCorazon,500);
+});
 
 
-/* animacion scroll */
+/* sorpresa */
 
-function revelar(){
+document.getElementById("sorpresaBtn").addEventListener("click",()=>{
 
-const elementos=document.querySelectorAll(".reveal");
+document.getElementById("sorpresa").classList.add("visible");
 
-elementos.forEach(el=>{
+});
+
+
+/* animaciones scroll */
+
+function reveal(){
+
+const elements=document.querySelectorAll(".reveal");
+
+elements.forEach(el=>{
 
 const top=el.getBoundingClientRect().top;
-const altura=window.innerHeight;
+const windowHeight=window.innerHeight;
 
-if(top<altura-100){
+if(top<windowHeight-100){
 el.classList.add("visible");
 }
 
@@ -60,18 +82,31 @@ el.classList.add("visible");
 
 }
 
-window.addEventListener("scroll",revelar);
+window.addEventListener("scroll",reveal);
+reveal();
 
-revelar();
 
+/* mensajes romanticos al entrar */
 
-/* boton secreto */
+const mensajes=[
+"💖 Hola amor, hice esta página para ti",
+"❤️ Cada momento contigo es especial",
+"💌 Eres la persona más importante para mí",
+"🌸 Gracias por estar en mi vida",
+"✨ Contigo todo es mejor",
+"💕 Te amo muchísimo"
+];
 
-const boton=document.getElementById("botonSecreto");
+const mensajeAleatorio=mensajes[Math.floor(Math.random()*mensajes.length)];
 
-boton.addEventListener("click",()=>{
+const mensajeDiv=document.getElementById("mensajeEntrada");
 
-document.getElementById("mensajeSecreto").innerText =
-"Eres la mejor persona que ha llegado a mi vida ❤️";
+mensajeDiv.innerText=mensajeAleatorio;
 
-});
+setTimeout(()=>{
+mensajeDiv.style.opacity=1;
+},500);
+
+setTimeout(()=>{
+mensajeDiv.style.opacity=0;
+},5000);
