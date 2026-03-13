@@ -43,7 +43,7 @@ if (playBtn && musica) {
 const contador = document.getElementById("contador");
 
 /* Fecha correcta: año, mes-1, día, hora, min, seg */
-const fechaInicio = new Date(2024, 7, 9, 9, 15, 0).getTime();
+const fechaInicio = new Date(2025, 8, 9, 21, 15, 0).getTime();
 
 function actualizarContador() {
   if (!contador) return;
