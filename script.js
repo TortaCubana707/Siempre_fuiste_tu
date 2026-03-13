@@ -4,6 +4,8 @@ const mensaje = document.getElementById("mensajeEntrada");
 
 window.addEventListener("load", () => {
 
+if(mensaje){
+
 mensaje.innerText = "Hola amor ❤️ tengo algo especial para ti";
 
 setTimeout(() => {
@@ -14,6 +16,8 @@ setTimeout(() => {
 mensaje.style.opacity = "0";
 }, 5000);
 
+}
+
 });
 
 
@@ -21,19 +25,24 @@ mensaje.style.opacity = "0";
 
 const sobre = document.getElementById("sobre");
 
+if(sobre){
+
 sobre.addEventListener("click", () => {
 
 sobre.classList.toggle("abierto");
-
 crearCorazones();
 
 });
+
+}
 
 
 /* MUSICA */
 
 const playBtn = document.getElementById("playBtn");
 const musica = document.getElementById("musica");
+
+if(playBtn && musica){
 
 playBtn.addEventListener("click", () => {
 
@@ -51,33 +60,41 @@ playBtn.innerText = "▶️ Reproducir música";
 
 });
 
+}
+
 
 /* CONTADOR DE TIEMPO */
 
 const contador = document.getElementById("contador");
 
-/* CAMBIA ESTA FECHA SI QUIERES */
-const fechaInicio = new Date("Agosto 09, 2024 09:15:00").getTime();
+/* FECHA CORRECTA */
+const fechaInicio = new Date("2024-08-09T09:15:00").getTime();
 
 function actualizarContador(){
+
+if(!contador) return;
 
 const ahora = new Date().getTime();
 
 const diferencia = ahora - fechaInicio;
 
 const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-
 const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-
 const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
 contador.innerHTML =
 dias + " días 💖 " +
 horas + " horas 💕 " +
-minutos + " minutos juntos";
+minutos + " minutos 💗 " +
+segundos + " segundos juntos";
 
 }
 
+/* ejecutar inmediatamente */
+actualizarContador();
+
+/* actualizar cada segundo */
 setInterval(actualizarContador,1000);
 
 
@@ -104,7 +121,6 @@ el.classList.add("visible");
 }
 
 window.addEventListener("scroll", mostrarElementos);
-
 mostrarElementos();
 
 
@@ -113,13 +129,16 @@ mostrarElementos();
 const sorpresaBtn = document.getElementById("sorpresaBtn");
 const sorpresa = document.getElementById("sorpresa");
 
+if(sorpresaBtn && sorpresa){
+
 sorpresaBtn.addEventListener("click", () => {
 
 sorpresa.classList.toggle("visible");
-
 crearCorazones();
 
 });
+
+}
 
 
 /* CORAZONES FLOTANDO */
@@ -133,10 +152,10 @@ const corazon = document.createElement("div");
 corazon.innerHTML = "💖";
 
 corazon.style.position = "fixed";
-corazon.style.left = Math.random() * 100 + "vw";
+corazon.style.left = Math.random()*100 + "vw";
 corazon.style.top = "100vh";
 corazon.style.fontSize = (20 + Math.random()*20) + "px";
-corazon.style.opacity = 0.8;
+corazon.style.opacity = "0.8";
 corazon.style.pointerEvents = "none";
 corazon.style.transition = "3s";
 
@@ -146,7 +165,7 @@ setTimeout(()=>{
 
 corazon.style.transform =
 "translateY(-120vh) rotate(" + Math.random()*360 + "deg)";
-corazon.style.opacity = 0;
+corazon.style.opacity = "0";
 
 },100);
 
@@ -159,7 +178,7 @@ corazon.remove();
 }
 
 
-/* EFECTO ROMANTICO AL PASAR EL MOUSE */
+/* EFECTO ROMANTICO EN IMAGENES */
 
 document.querySelectorAll("img").forEach(img => {
 
@@ -178,7 +197,7 @@ img.style.transform = "scale(1)";
 });
 
 
-/* MENSAJES ALEATORIOS ROMANTICOS */
+/* MENSAJES ROMANTICOS */
 
 const mensajesRomanticos = [
 
