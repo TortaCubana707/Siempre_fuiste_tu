@@ -42,8 +42,8 @@ if (playBtn && musica) {
 /* CONTADOR DE TIEMPO */
 const contador = document.getElementById("contador");
 
-/* Fecha correcta: año, mes-1, día, hora, min, seg */
-const fechaInicio = new Date(2025, 8, 9, 21, 15, 0).getTime();
+/* Fecha exacta: 9 de agosto de 2025, 21:15, Santiago de Querétaro */
+const fechaInicio = new Date("2025-08-09T21:15:00-05:00").getTime();
 
 function actualizarContador() {
   if (!contador) return;
@@ -51,7 +51,10 @@ function actualizarContador() {
   const ahora = new Date().getTime();
   const diferencia = ahora - fechaInicio;
 
-  if (diferencia < 0) return; // evita NaN si la fecha es futura
+  if (diferencia < 0) {
+    contador.innerHTML = "¡Nuestro tiempo juntos aún no ha comenzado! 💖";
+    return; // evita NaN si la fecha es futura
+  }
 
   const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
   const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
